@@ -149,6 +149,23 @@ class Wife(Human):
         self.house.mud -= 100
         print(f'{self.name} делает уборку')
 
+class Cat:
+
+    def __init__(self):
+        pass
+
+    def act(self):
+        pass
+
+    def eat(self):
+        pass
+
+    def sleep(self):
+        pass
+
+    def soil(self):
+        pass
+
 home = House('My_sweet_home')
 serge = Husband(name='Сережа', house=home)
 masha = Wife(name='Маша', house=home)
