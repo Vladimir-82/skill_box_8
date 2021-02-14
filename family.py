@@ -169,11 +169,11 @@ class Child(Human):
         else:
             Kolia.playing()
 
-    # def eat(self):
-    #     #super().eat()
-    #
-    #     self.fullness += 10
-    #     self.house.food -= 10
+    def eat(self):
+        self.fullness += 10
+        self.house.food -= 10
+        Human.tottal_food += 10
+        print(f'{self.name} поел')
 
     def sleep(self):
         self.fullness -= 10
