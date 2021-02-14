@@ -149,40 +149,60 @@ class Wife(Human):
         self.house.mud -= 100
         print(f'{self.name} делает уборку')
 
-class Child:
+class Child(Human):
 
-    def __init__(self):
-        pass
-
-    def __str__(self):
-        return super().__str__()
+    def __init__(self, name, house):
+        super().__init__(name=name, house=house)
+        self.happyness = 100
 
     def act(self):
-        pass
+        dice = randint(1, 3)
+        if self.fullness < 0:
+            print(f'{self.name} умер...')
+            return
+        if self.fullness < 15:
+            Kolia.eat()
+        elif dice == 1:
+            Kolia.eat()
+        elif dice == 2:
+            Kolia.sleep()
+        else:
+            Kolia.playing()
 
-    def eat(self):
-        pass
+    # def eat(self):
+    #     #super().eat()
+    #
+    #     self.fullness += 10
+    #     self.house.food -= 10
 
     def sleep(self):
-        pass
+        self.fullness -= 10
+        print(f'{self.name} спит')
+
+    def playing(self):
+        self.fullness -= 10
+        self.house.mud += 20
+        print(f'{self.name} играется')
 
 home = House('My_sweet_home')
 serge = Husband(name='Сережа', house=home)
 masha = Wife(name='Маша', house=home)
-
+Kolia = Child(name='Колька', house=home)
 
 for day in range(1, 366):
     print('================== День {} =================='.format(day))
     home.mudding()
     serge.act()
     masha.act()
+    Kolia.act()
     print(serge)
     print(masha)
+    print(Kolia)
     print(home)
     print()
-    print(f'Всего заработано денег: {Husband.tottal_money}')
-    print(f'Всего съедено еды: {Human.tottal_food}')
-    print(f'Всего куплено шуб: {Wife.tottal_fur_coat}')
+print(f'Всего заработано денег: {Husband.tottal_money}')
+print(f'Всего съедено еды: {Human.tottal_food}')
+print(f'Всего куплено шуб: {Wife.tottal_fur_coat}')
 # TODO после реализации первой части - отдать на проверку учителю
 
 ######################################################## Часть вторая
