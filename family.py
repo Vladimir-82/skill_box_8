@@ -111,7 +111,7 @@ class Husband(Human):
 class Wife(Human):
     tottal_fur_coat = 0
     def act(self):
-        dice = randint(1, 6)
+        dice = randint(1, 20)
         if self.fullness < 0 or self.happyness < 10:
             print(f'{self.name} умерла...')
             return
@@ -125,6 +125,8 @@ class Wife(Human):
             masha.shopping()
         elif dice == 2:
             self.pet_the_cat()
+        elif dice == 3:
+            self.buy_fur_coat()
         else:
             masha.clean_house()
         if self.house.mud > 90:
@@ -233,17 +235,27 @@ masha = Wife(name='Маша', house=home)
 Kolia = Child(name='Колька', house=home)
 cat = Cat(name='Мурзик', house=home)
 
+cats = ['Мурзик', 'Барсик', 'Марсик', 'Рыжий засранец']
+cats_obj = []
+for cat in cats:
+    cat_obj = Cat(name=cat, house=home)
+    cats_obj.append(cat_obj)
+
+
 for day in range(1, 366):
     print('================== День {} =================='.format(day))
     home.mudding()
     serge.act()
     masha.act()
     Kolia.act()
-    cat.act()
+
+    for cat in cats_obj:
+       cat.act()
+
     print(serge)
     print(masha)
     print(Kolia)
-    print(cat)
+
     print()
     print(home)
     print()
